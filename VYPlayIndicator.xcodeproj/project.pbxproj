@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1BD1E461AFCF9770041D138 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1BD1E441AFCF9770041D138 /* Info.plist */; };
+		E1BD1E471AFCF9770041D138 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E451AFCF9770041D138 /* main.m */; };
+		E1BD1E4E1AFCF97F0041D138 /* VYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E491AFCF97F0041D138 /* VYAppDelegate.m */; };
+		E1BD1E4F1AFCF97F0041D138 /* VYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */; };
+		E1BD1E501AFCF97F0041D138 /* VYTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E4D1AFCF97F0041D138 /* VYTableViewController.m */; };
+		E1F5649A1AFCFA1E00C44A02 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */; };
+		E1F5649D1AFCFA3500C44A02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1F5649B1AFCFA3500C44A02 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E1A6C7451AFCEEAD0013768C /* playindicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playindicator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1BD1E441AFCF9770041D138 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = SOURCE_ROOT; };
+		E1BD1E451AFCF9770041D138 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Example/main.m; sourceTree = SOURCE_ROOT; };
+		E1BD1E481AFCF97F0041D138 /* VYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYAppDelegate.h; path = Example/VYAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		E1BD1E491AFCF97F0041D138 /* VYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYAppDelegate.m; path = Example/VYAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		E1BD1E4A1AFCF97F0041D138 /* VYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYTableViewCell.h; path = Example/VYTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYTableViewCell.m; path = Example/VYTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		E1BD1E4C1AFCF97F0041D138 /* VYTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYTableViewController.h; path = Example/VYTableViewController.h; sourceTree = SOURCE_ROOT; };
+		E1BD1E4D1AFCF97F0041D138 /* VYTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYTableViewController.m; path = Example/VYTableViewController.m; sourceTree = SOURCE_ROOT; };
+		E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYPlayIndicator.h; path = Classes/VYPlayIndicator.h; sourceTree = SOURCE_ROOT; };
+		E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYPlayIndicator.m; path = Classes/VYPlayIndicator.m; sourceTree = SOURCE_ROOT; };
+		E1F5649C1AFCFA3500C44A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Example/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1A6C7421AFCEEAD0013768C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1A6C73C1AFCEEAD0013768C = {
+			isa = PBXGroup;
+			children = (
+				E1A6C7471AFCEEAD0013768C /* playindicator */,
+				E1A6C7461AFCEEAD0013768C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1A6C7461AFCEEAD0013768C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1A6C7451AFCEEAD0013768C /* playindicator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1A6C7471AFCEEAD0013768C /* playindicator */ = {
+			isa = PBXGroup;
+			children = (
+				E1F5649B1AFCFA3500C44A02 /* Main.storyboard */,
+				E1A6C7481AFCEEAD0013768C /* Supporting Files */,
+				E1BD1E481AFCF97F0041D138 /* VYAppDelegate.h */,
+				E1BD1E491AFCF97F0041D138 /* VYAppDelegate.m */,
+				E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */,
+				E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */,
+				E1BD1E4A1AFCF97F0041D138 /* VYTableViewCell.h */,
+				E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */,
+				E1BD1E4C1AFCF97F0041D138 /* VYTableViewController.h */,
+				E1BD1E4D1AFCF97F0041D138 /* VYTableViewController.m */,
+			);
+			path = playindicator;
+			sourceTree = "<group>";
+		};
+		E1A6C7481AFCEEAD0013768C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1BD1E441AFCF9770041D138 /* Info.plist */,
+				E1BD1E451AFCF9770041D138 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E1A6C7441AFCEEAD0013768C /* VYPlayIndicator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1A6C7681AFCEEAD0013768C /* Build configuration list for PBXNativeTarget "VYPlayIndicator" */;
+			buildPhases = (
+				E1A6C7411AFCEEAD0013768C /* Sources */,
+				E1A6C7421AFCEEAD0013768C /* Frameworks */,
+				E1A6C7431AFCEEAD0013768C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VYPlayIndicator;
+			productName = playindicator;
+			productReference = E1A6C7451AFCEEAD0013768C /* playindicator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1A6C73D1AFCEEAD0013768C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Dennis Oberhoff";
+				TargetAttributes = {
+					E1A6C7441AFCEEAD0013768C = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = E1A6C7401AFCEEAD0013768C /* Build configuration list for PBXProject "VYPlayIndicator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E1A6C73C1AFCEEAD0013768C;
+			productRefGroup = E1A6C7461AFCEEAD0013768C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1A6C7441AFCEEAD0013768C /* VYPlayIndicator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1A6C7431AFCEEAD0013768C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1BD1E461AFCF9770041D138 /* Info.plist in Resources */,
+				E1F5649D1AFCFA3500C44A02 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1A6C7411AFCEEAD0013768C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1BD1E501AFCF97F0041D138 /* VYTableViewController.m in Sources */,
+				E1BD1E4E1AFCF97F0041D138 /* VYAppDelegate.m in Sources */,
+				E1BD1E471AFCF9770041D138 /* main.m in Sources */,
+				E1F5649A1AFCFA1E00C44A02 /* VYPlayIndicator.m in Sources */,
+				E1BD1E4F1AFCF97F0041D138 /* VYTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E1F5649B1AFCFA3500C44A02 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1F5649C1AFCFA3500C44A02 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E1A6C7661AFCEEAD0013768C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E1A6C7671AFCEEAD0013768C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1A6C7691AFCEEAD0013768C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E1A6C76A1AFCEEAD0013768C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E1A6C7401AFCEEAD0013768C /* Build configuration list for PBXProject "VYPlayIndicator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A6C7661AFCEEAD0013768C /* Debug */,
+				E1A6C7671AFCEEAD0013768C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1A6C7681AFCEEAD0013768C /* Build configuration list for PBXNativeTarget "VYPlayIndicator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A6C7691AFCEEAD0013768C /* Debug */,
+				E1A6C76A1AFCEEAD0013768C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1A6C73D1AFCEEAD0013768C /* Project object */;
+}
