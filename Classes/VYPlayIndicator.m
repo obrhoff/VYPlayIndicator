@@ -202,11 +202,6 @@
     self.thirdBeam.fillColor = color.CGColor;
 }
 
--(void)setPosition:(CGPoint)position {
-    [super setPosition:position];
-    if (CGPointEqualToPoint(position, CGPointZero)) position = CGPointMake(27.5, 19.5);
-}
-
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     if (!flag) return;
     if ([anim valueForKey:@"keyFrame1"]) {
