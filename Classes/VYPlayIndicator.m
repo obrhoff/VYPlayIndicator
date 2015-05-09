@@ -76,11 +76,12 @@
     opacity.toValue = @(1.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
     opacity.duration = 0.2;
-    opacity.fillMode = kCAFillModeForwards;
+    opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
     
     CAKeyframeAnimation *keyframe = [CAKeyframeAnimation animationWithKeyPath:@"path"];
     keyframe.duration = 2.75;
+    keyframe.beginTime = CACurrentMediaTime() + 0.35;
     keyframe.fillMode = kCAFillModeForwards;
     keyframe.removedOnCompletion = NO;
     keyframe.autoreverses = YES;
@@ -105,9 +106,8 @@
     
     CABasicAnimation *begin = [CABasicAnimation animationWithKeyPath:@"path"];
     begin.duration = 0.35;
-    begin.fillMode = kCAFillModeForwards;
-    begin.removedOnCompletion = NO;
-    begin.delegate = self;
+    begin.fillMode = kCAFillModeRemoved;
+    begin.removedOnCompletion = YES;
     
     CABasicAnimation *secondBegin = begin.copy;
     CABasicAnimation *thirdBegin = begin.copy;
@@ -119,14 +119,13 @@
     begin.toValue = keyframe.values.firstObject;
     secondBegin.toValue = secondBeam.values.firstObject;
     thirdBegin.toValue = thirdBeam.values.firstObject;
-    
-    [begin setValue:keyframe forKey:@"keyFrame1"];
-    [secondBegin setValue:secondBeam forKey:@"keyFrame2"];
-    [thirdBegin setValue:thirdBeam forKey:@"keyFrame3"];
 
     [self.firstBeam addAnimation:begin forKey:begin.keyPath];
+    [self.firstBeam addAnimation:keyframe forKey:@"keyFrame"];
     [self.secondBeam addAnimation:secondBegin forKey:secondBegin.keyPath];
+    [self.secondBeam addAnimation:secondBeam forKey:@"keyFrame"];
     [self.thirdBeam addAnimation:thirdBegin forKey:thirdBegin.keyPath];
+    [self.thirdBeam addAnimation:thirdBeam forKey:@"keyFrame"];
     [self addAnimation:opacity forKey:opacity.keyPath];
     
 }
@@ -205,22 +204,6 @@
     self.firstBeam.fillColor = color.CGColor;
     self.secondBeam.fillColor = color.CGColor;
     self.thirdBeam.fillColor = color.CGColor;
-}
-
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    if (!flag) return;
-    if ([anim valueForKey:@"keyFrame1"]) {
-        CAKeyframeAnimation *keyFrame = [anim valueForKey:@"keyFrame1"];
-        [self.firstBeam addAnimation:keyFrame forKey:keyFrame.keyPath];
-    }
-    if ([anim valueForKey:@"keyFrame2"]) {
-        CAKeyframeAnimation *keyFrame = [anim valueForKey:@"keyFrame2"];
-        [self.secondBeam addAnimation:keyFrame forKey:keyFrame.keyPath];
-    }
-    if ([anim valueForKey:@"keyFrame3"]) {
-        CAKeyframeAnimation *keyFrame = [anim valueForKey:@"keyFrame3"];
-        [self.thirdBeam addAnimation:keyFrame forKey:keyFrame.keyPath];
-    }
 }
 
 -(void)layoutSublayers {
