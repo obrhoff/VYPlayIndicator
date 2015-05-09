@@ -45,6 +45,8 @@
     self.secondBeam.opaque = YES;
     self.thirdBeam.opaque = YES;
 
+    self.opacity = 0.0;
+
 }
 
 -(void)applyPath {
@@ -74,12 +76,12 @@
     opacity.toValue = @(1.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
     opacity.duration = 0.2;
-    opacity.fillMode = kCAFillModeBoth;
+    opacity.fillMode = kCAFillModeForwards;
     opacity.removedOnCompletion = NO;
     
     CAKeyframeAnimation *keyframe = [CAKeyframeAnimation animationWithKeyPath:@"path"];
     keyframe.duration = 2.75;
-    keyframe.fillMode = kCAFillModeBoth;
+    keyframe.fillMode = kCAFillModeForwards;
     keyframe.removedOnCompletion = NO;
     keyframe.autoreverses = YES;
     keyframe.repeatCount = INFINITY;
@@ -102,8 +104,8 @@
     thirdBeam.timingFunctions = [self randomTimingFunctions:count];
     
     CABasicAnimation *begin = [CABasicAnimation animationWithKeyPath:@"path"];
-    begin.duration = 0.5;
-    begin.fillMode = kCAFillModeBoth;
+    begin.duration = 0.35;
+    begin.fillMode = kCAFillModeForwards;
     begin.removedOnCompletion = NO;
     begin.delegate = self;
     
@@ -129,38 +131,41 @@
     
 }
 
--(void)stopPlayback:(BOOL)animated {
+-(void)stopPlayback {
+    
+    if (![self animationForKey:@"opacity"]) return;
     
     UIBezierPath *path = [self pathWithPercentage:5];
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
     animation.toValue = (id) path.CGPath;
     animation.duration = 0.2;
-    animation.fillMode = kCAFillModeBoth;
+    animation.fillMode = kCAFillModeForwards;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.removedOnCompletion = NO;
 
+    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacity.toValue = @(0.0);
+    opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
+    opacity.beginTime = CACurrentMediaTime() + animation.duration * 0.8;
+    opacity.duration = 0.1;
+    opacity.fillMode = kCAFillModeBoth;
+    opacity.removedOnCompletion = NO;
+    
     for (CAShapeLayer *beam in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
         CABasicAnimation *step = animation.copy;
         step.fromValue = [beam.presentationLayer valueForKeyPath:step.keyPath];
-        if (!animated) {
-            [CATransaction begin];
-            [CATransaction setDisableActions:YES];
-            [beam addAnimation:step forKey:step.keyPath];
-            [CATransaction commit];
-        } else {
-            [beam addAnimation:step forKey:step.keyPath];
-        }
+        [beam addAnimation:step forKey:step.keyPath];
     }
+    [self addAnimation:opacity forKey:opacity.keyPath];
     
 }
 
 -(void)reset {
-    [self.firstBeam removeAllAnimations];
-    [self.secondBeam removeAllAnimations];
-    [self.thirdBeam removeAllAnimations];
     [self removeAllAnimations];
-    self.firstBeam.fillColor = self.color.CGColor;
-    self.secondBeam.fillColor = self.color.CGColor;
-    self.thirdBeam.fillColor = self.color.CGColor;
+    for (CAShapeLayer *layer in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
+        [layer removeAllAnimations];
+        layer.fillColor = self.color.CGColor;
+    }
 }
 
 -(NSArray*)randomPaths:(NSUInteger)count {
@@ -216,7 +221,6 @@
         CAKeyframeAnimation *keyFrame = [anim valueForKey:@"keyFrame3"];
         [self.thirdBeam addAnimation:keyFrame forKey:keyFrame.keyPath];
     }
-    
 }
 
 -(void)layoutSublayers {

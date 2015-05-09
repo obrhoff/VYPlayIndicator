@@ -13,7 +13,7 @@
 @property (nonatomic, readwrite, strong) UIColor *color;
 
 -(void)animatePlayback;
--(void)stopPlayback:(BOOL)animated;
+-(void)stopPlayback;
 -(void)reset;
 
 @end

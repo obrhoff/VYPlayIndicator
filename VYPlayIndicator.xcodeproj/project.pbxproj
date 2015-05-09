@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E1A6C7451AFCEEAD0013768C /* playindicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playindicator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1A6C7451AFCEEAD0013768C /* VYPlayIndicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VYPlayIndicator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BD1E441AFCF9770041D138 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = SOURCE_ROOT; };
 		E1BD1E451AFCF9770041D138 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Example/main.m; sourceTree = SOURCE_ROOT; };
 		E1BD1E481AFCF97F0041D138 /* VYAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYAppDelegate.h; path = Example/VYAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -45,7 +45,7 @@
 		E1A6C73C1AFCEEAD0013768C = {
 			isa = PBXGroup;
 			children = (
-				E1A6C7471AFCEEAD0013768C /* playindicator */,
+				E1A6C7471AFCEEAD0013768C /* VYPlayIndicator */,
 				E1A6C7461AFCEEAD0013768C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,12 +53,12 @@
 		E1A6C7461AFCEEAD0013768C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E1A6C7451AFCEEAD0013768C /* playindicator.app */,
+				E1A6C7451AFCEEAD0013768C /* VYPlayIndicator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E1A6C7471AFCEEAD0013768C /* playindicator */ = {
+		E1A6C7471AFCEEAD0013768C /* VYPlayIndicator */ = {
 			isa = PBXGroup;
 			children = (
 				E1F5649B1AFCFA3500C44A02 /* Main.storyboard */,
@@ -72,6 +72,7 @@
 				E1BD1E4C1AFCF97F0041D138 /* VYTableViewController.h */,
 				E1BD1E4D1AFCF97F0041D138 /* VYTableViewController.m */,
 			);
+			name = VYPlayIndicator;
 			path = playindicator;
 			sourceTree = "<group>";
 		};
@@ -101,7 +102,7 @@
 			);
 			name = VYPlayIndicator;
 			productName = playindicator;
-			productReference = E1A6C7451AFCEEAD0013768C /* playindicator.app */;
+			productReference = E1A6C7451AFCEEAD0013768C /* VYPlayIndicator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
