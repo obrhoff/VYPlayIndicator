@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "VYPlayIndicator"
-  s.version      = "1.1"
+  s.version      = "1.2"
   s.summary      = "VYPlayIndicator is a CALayer Class to indicate a song is playing."
   s.homepage     = "https://github.com/docterd/VYPlayIndicator"
   s.license      = { :type => "MIT" }
