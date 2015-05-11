@@ -149,6 +149,7 @@
     opacity.duration = 0.1;
     opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
+    opacity.delegate = self;
     
     for (CAShapeLayer *beam in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
         CABasicAnimation *step = animation.copy;
@@ -156,6 +157,7 @@
         [beam addAnimation:step forKey:step.keyPath];
     }
     [self addAnimation:opacity forKey:opacity.keyPath];
+    
     
 }
 
@@ -197,6 +199,12 @@
     [path addLineToPoint:CGPointMake(originX, originY)];
     [path closePath];
     return path;
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    if (!flag) return;
+    if (self.completionBlock) self.completionBlock();
+    self.completionBlock = nil;
 }
 
 -(void)setColor:(UIColor *)color {

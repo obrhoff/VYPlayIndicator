@@ -11,6 +11,7 @@
 @interface VYPlayIndicator : CALayer
 
 @property (nonatomic, readwrite, strong) UIColor *color;
+@property (nonatomic, readwrite, copy) dispatch_block_t completionBlock;
 
 -(void)animatePlayback;
 -(void)stopPlayback;
