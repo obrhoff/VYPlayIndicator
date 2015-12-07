@@ -16,5 +16,6 @@
 -(void)animatePlayback;
 -(void)stopPlayback;
 -(void)reset;
-
+-(void)pause;
+-(void)resume;
 @end
