@@ -18,7 +18,7 @@
 @implementation VYTableViewCell
 
 - (void)awakeFromNib {
-    self.accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 33, 33)];
+    self.accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     self.playIndicator = [VYPlayIndicator new];
     self.playIndicator.frame = self.accessoryView.bounds;
     [self.accessoryView.layer addSublayer:self.playIndicator];
@@ -26,7 +26,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    (selected) ? [self.playIndicator animatePlayback] : [self.playIndicator stopPlayback];
+    self.playIndicator.state = selected ? VYPlayStatePlaying : VYPlayStateStopped;
 }
 
 -(void)prepareForReuse {
