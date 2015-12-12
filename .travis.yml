@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: VYPlayIndicator.xcodeproj
+xcode_scheme: VYPlayIndicator
