@@ -17,7 +17,9 @@
 
 @implementation VYPlayIndicator
 
-@synthesize color = _color;
+NSString * const kPathKey = @"path";
+NSString * const kOpacityKey = @"opacity";
+NSString * const kFrameKey = @"keyFrame";
 
 -(instancetype)init {
     self = [super init];
@@ -72,15 +74,15 @@
 
 -(void)animatePlayback {
     
-    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
     opacity.toValue = @(1.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
     opacity.duration = 0.2;
     opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
     
-    CAKeyframeAnimation *keyframe = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    keyframe.duration = 2.75;
+    CAKeyframeAnimation *keyframe = [CAKeyframeAnimation animationWithKeyPath:kPathKey];
+    keyframe.duration = 1.75;
     keyframe.beginTime = CACurrentMediaTime() + 0.35;
     keyframe.fillMode = kCAFillModeForwards;
     keyframe.removedOnCompletion = NO;
@@ -104,7 +106,7 @@
     secondBeam.timingFunctions = [self randomTimingFunctions:count];
     thirdBeam.timingFunctions = [self randomTimingFunctions:count];
     
-    CABasicAnimation *begin = [CABasicAnimation animationWithKeyPath:@"path"];
+    CABasicAnimation *begin = [CABasicAnimation animationWithKeyPath:kPathKey];
     begin.duration = 0.35;
     begin.fillMode = kCAFillModeRemoved;
     begin.removedOnCompletion = YES;
@@ -121,70 +123,117 @@
     thirdBegin.toValue = thirdBeam.values.firstObject;
 
     [self.firstBeam addAnimation:begin forKey:begin.keyPath];
-    [self.firstBeam addAnimation:keyframe forKey:@"keyFrame"];
+    [self.firstBeam addAnimation:keyframe forKey:kFrameKey];
     [self.secondBeam addAnimation:secondBegin forKey:secondBegin.keyPath];
-    [self.secondBeam addAnimation:secondBeam forKey:@"keyFrame"];
+    [self.secondBeam addAnimation:secondBeam forKey:kFrameKey];
     [self.thirdBeam addAnimation:thirdBegin forKey:thirdBegin.keyPath];
-    [self.thirdBeam addAnimation:thirdBeam forKey:@"keyFrame"];
+    [self.thirdBeam addAnimation:thirdBeam forKey:kFrameKey];
     [self addAnimation:opacity forKey:opacity.keyPath];
     
 }
 
--(void)stopPlayback {
-    
-    if (![self animationForKey:@"opacity"]) return;
+-(void)pausePlayback {
     
     UIBezierPath *path = [self pathWithPercentage:5];
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
     animation.toValue = (id) path.CGPath;
     animation.duration = 0.2;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.removedOnCompletion = NO;
 
-    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    for (CAShapeLayer *beam in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
+        CABasicAnimation *step = animation.copy;
+        step.fromValue = [beam.presentationLayer valueForKeyPath:step.keyPath];
+        [beam removeAnimationForKey:kFrameKey];
+        [beam addAnimation:step forKey:step.keyPath];
+    }
+
+}
+
+-(void)stopPlayback {
+    
+    [self pausePlayback];
+
+    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
     opacity.toValue = @(0.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
-    opacity.beginTime = CACurrentMediaTime() + animation.duration * 0.8;
+    opacity.beginTime = CACurrentMediaTime() + 0.2 * 0.8;
     opacity.duration = 0.1;
     opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
     opacity.delegate = self;
-    
-    for (CAShapeLayer *beam in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
-        CABasicAnimation *step = animation.copy;
-        step.fromValue = [beam.presentationLayer valueForKeyPath:step.keyPath];
-        [beam addAnimation:step forKey:step.keyPath];
-    }
     [self addAnimation:opacity forKey:opacity.keyPath];
-    
     
 }
 
 -(void)reset {
     [self removeAllAnimations];
     for (CAShapeLayer *layer in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
+        [self applyPath];
         [layer removeAllAnimations];
         layer.fillColor = self.color.CGColor;
     }
 }
 
+-(void)setState:(VYPlayState)state {
+    switch (state) {
+        case VYPlayStateStopped: {
+            [self stopPlayback];
+            break;
+        }
+        case VYPlayStatePlaying: {
+            [self animatePlayback];
+            break;
+        }
+        case VYPlayStatePaused: {
+            [self pausePlayback];
+            break;
+        }
+    }
+}
+
+-(VYPlayState)state {
+    
+    VYPlayState state;
+
+    CABasicAnimation *opacity = (CABasicAnimation*) [self animationForKey:kOpacityKey];
+    CAKeyframeAnimation *keyFrame = (CAKeyframeAnimation*) [self.firstBeam animationForKey:kFrameKey];
+    if (keyFrame) {
+        state = VYPlayStatePlaying;
+    } else if ([opacity.toValue floatValue]) {
+        state = VYPlayStatePaused;
+    } else {
+        state = VYPlayStateStopped;
+    }
+    
+    return state;
+}
+
+#pragma mark Path
+
 -(NSArray*)randomPaths:(NSUInteger)count {
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:count];
-    while (count--) [frames addObject: (id) [self pathWithPercentage:(CGFloat) rand() / RAND_MAX * 100].CGPath];
+    while (count--) {
+        [frames addObject: (id) [self pathWithPercentage:(CGFloat) rand() / RAND_MAX * 100].CGPath];
+    }
     return frames.copy;
 }
 
 -(NSArray*)randomTimingFunctions:(NSUInteger)count {
     NSMutableArray *randomTimings = [NSMutableArray arrayWithCapacity:count];
     NSArray *timings = @[kCAMediaTimingFunctionLinear, kCAMediaTimingFunctionEaseInEaseOut, kCAMediaTimingFunctionEaseOut,kCAMediaTimingFunctionEaseIn];
-    while (count--) [randomTimings addObject:[CAMediaTimingFunction functionWithName:timings[arc4random() % timings.count]]];
+    while (count--) {
+        [randomTimings addObject:[CAMediaTimingFunction functionWithName:timings[arc4random() % timings.count]]];
+    }
     return randomTimings.copy;
 }
 
 -(NSArray*)randomKeytimes:(NSUInteger)count {
     NSMutableArray *timings = [NSMutableArray arrayWithCapacity:count];
-    for (int idx = 0; idx < count; idx++) [timings addObject:@((CGFloat) idx / count)];
+    for (int idx = 0; idx < count; idx++) {
+        [timings addObject:@((CGFloat) idx / count)];
+    }
     return timings.copy;
 }
 
@@ -207,8 +256,11 @@
     self.completionBlock = nil;
 }
 
+-(UIColor *)color {
+    return [UIColor colorWithCGColor:self.firstBeam.fillColor];
+}
+
 -(void)setColor:(UIColor *)color {
-    _color = color;
     self.firstBeam.fillColor = color.CGColor;
     self.secondBeam.fillColor = color.CGColor;
     self.thirdBeam.fillColor = color.CGColor;

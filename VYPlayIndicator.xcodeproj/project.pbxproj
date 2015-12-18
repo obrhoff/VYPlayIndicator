@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E1BD1E461AFCF9770041D138 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1BD1E441AFCF9770041D138 /* Info.plist */; };
 		E1BD1E471AFCF9770041D138 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E451AFCF9770041D138 /* main.m */; };
 		E1BD1E4E1AFCF97F0041D138 /* VYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E491AFCF97F0041D138 /* VYAppDelegate.m */; };
 		E1BD1E4F1AFCF97F0041D138 /* VYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */; };
@@ -111,7 +110,7 @@
 		E1A6C73D1AFCEEAD0013768C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Dennis Oberhoff";
 				TargetAttributes = {
 					E1A6C7441AFCEEAD0013768C = {
@@ -142,7 +141,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1BD1E461AFCF9770041D138 /* Info.plist in Resources */,
 				E1F5649D1AFCFA3500C44A02 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +195,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -262,6 +261,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -272,6 +272,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
