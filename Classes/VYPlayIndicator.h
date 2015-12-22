@@ -25,5 +25,6 @@ typedef NS_ENUM(NSUInteger, VYPlayState) {
 -(void)stopPlayback;
 -(void)pausePlayback;
 -(void)reset;
-
+-(void)pause;
+-(void)resume;
 @end
