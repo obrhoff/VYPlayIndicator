@@ -7,7 +7,7 @@
 
 #import "VYPlayIndicator.h"
 
-@interface VYPlayIndicator()
+@interface VYPlayIndicator() <CAAnimationDelegate>
 
 @property (nonatomic, readwrite, strong) CAShapeLayer *firstBeam;
 @property (nonatomic, readwrite, strong) CAShapeLayer *secondBeam;
@@ -38,7 +38,7 @@ NSString * const kFrameKey = @"keyFrame";
 
 -(void)applyStyle {
     
-    self.color = [UIColor redColor];
+    self.color = [VYColor redColor];
     self.firstBeam.fillColor = self.color.CGColor;
     self.secondBeam.fillColor = self.color.CGColor;
     self.thirdBeam.fillColor = self.color.CGColor;
@@ -46,15 +46,15 @@ NSString * const kFrameKey = @"keyFrame";
     self.firstBeam.opaque = YES;
     self.secondBeam.opaque = YES;
     self.thirdBeam.opaque = YES;
-
+    
     self.opacity = 0.0;
-
+    
 }
 
 -(void)applyPath {
-
-    CGRect bounds = [self pathWithPercentage:100].bounds;
-    UIBezierPath *path = [self pathWithPercentage:5];
+    
+    CGRect bounds = CGPathGetPathBoundingBox([self pathWithPercentage:100]);
+    CGPathRef path = [self pathWithPercentage:5];
     
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
@@ -62,9 +62,9 @@ NSString * const kFrameKey = @"keyFrame";
     self.secondBeam.frame = bounds;
     self.thirdBeam.frame = bounds;
     
-    self.firstBeam.path = path.CGPath;
-    self.secondBeam.path = path.CGPath;
-    self.thirdBeam.path = path.CGPath;
+    self.firstBeam.path = path;
+    self.secondBeam.path = path;
+    self.thirdBeam.path = path;
     
     self.secondBeam.position = (CGPoint) {CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)};
     self.thirdBeam.position = (CGPoint) {CGRectGetMaxX(self.bounds) - CGRectGetWidth(self.thirdBeam.bounds) / 2, CGRectGetMidY(self.bounds)};
@@ -97,7 +97,7 @@ NSString * const kFrameKey = @"keyFrame";
     keyframe.values = [self randomPaths:count];
     secondBeam.values = [self randomPaths:count];
     thirdBeam.values = [self randomPaths:count];
-
+    
     keyframe.keyTimes = [self randomKeytimes:count];
     secondBeam.keyTimes = [self randomKeytimes:count];
     thirdBeam.keyTimes = [self randomKeytimes:count];
@@ -113,15 +113,15 @@ NSString * const kFrameKey = @"keyFrame";
     
     CABasicAnimation *secondBegin = begin.copy;
     CABasicAnimation *thirdBegin = begin.copy;
-
+    
     begin.fromValue = [self.firstBeam.presentationLayer valueForKeyPath:begin.keyPath];
     secondBegin.fromValue = [self.secondBeam.presentationLayer valueForKeyPath:secondBeam.keyPath];
     thirdBegin.fromValue = [self.thirdBeam.presentationLayer valueForKeyPath:thirdBegin.keyPath];
-
+    
     begin.toValue = keyframe.values.firstObject;
     secondBegin.toValue = secondBeam.values.firstObject;
     thirdBegin.toValue = thirdBeam.values.firstObject;
-
+    
     [self.firstBeam addAnimation:begin forKey:begin.keyPath];
     [self.firstBeam addAnimation:keyframe forKey:kFrameKey];
     [self.secondBeam addAnimation:secondBegin forKey:secondBegin.keyPath];
@@ -134,27 +134,26 @@ NSString * const kFrameKey = @"keyFrame";
 
 -(void)pausePlayback {
     
-    UIBezierPath *path = [self pathWithPercentage:5];
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
-    animation.toValue = (id) path.CGPath;
+    animation.toValue = (id) [self pathWithPercentage:5];
     animation.duration = 0.2;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.removedOnCompletion = NO;
-
+    
     for (CAShapeLayer *beam in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
         CABasicAnimation *step = animation.copy;
         step.fromValue = [beam.presentationLayer valueForKeyPath:step.keyPath];
         [beam removeAnimationForKey:kFrameKey];
         [beam addAnimation:step forKey:step.keyPath];
     }
-
+    
 }
 
 -(void)stopPlayback {
     
     [self pausePlayback];
-
+    
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
     opacity.toValue = @(0.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
@@ -196,7 +195,7 @@ NSString * const kFrameKey = @"keyFrame";
 -(VYPlayState)state {
     
     VYPlayState state;
-
+    
     CABasicAnimation *opacity = (CABasicAnimation*) [self animationForKey:kOpacityKey];
     CAKeyframeAnimation *keyFrame = (CAKeyframeAnimation*) [self.firstBeam animationForKey:kFrameKey];
     if (keyFrame) {
@@ -215,7 +214,7 @@ NSString * const kFrameKey = @"keyFrame";
 -(NSArray*)randomPaths:(NSUInteger)count {
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:count];
     while (count--) {
-        [frames addObject: (id) [self pathWithPercentage:(CGFloat) rand() / RAND_MAX * 100].CGPath];
+        [frames addObject: (id) [self pathWithPercentage:(CGFloat) rand() / RAND_MAX * 100]];
     }
     return frames.copy;
 }
@@ -237,17 +236,21 @@ NSString * const kFrameKey = @"keyFrame";
     return timings.copy;
 }
 
--(UIBezierPath*)pathWithPercentage:(CGFloat)percentageFactor {
+-(CGPathRef)pathWithPercentage:(CGFloat)percentageFactor {
     
     CGFloat originY = CGRectGetHeight(self.bounds) - (CGRectGetHeight(self.bounds) * (percentageFactor / 100.0 ));
     CGFloat originX = CGRectGetMaxX(self.bounds) * 0.25;
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(originX, CGRectGetMaxY(self.bounds))];
-    [path addLineToPoint:CGPointMake(CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds))];
-    [path addLineToPoint:CGPointMake(CGRectGetMinX(self.bounds), originY)];
-    [path addLineToPoint:CGPointMake(originX, originY)];
-    [path closePath];
-    return path;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, originX, CGRectGetMaxY(self.bounds));
+    CGPathAddLineToPoint(path, NULL, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds));
+    CGPathAddLineToPoint(path, NULL, CGRectGetMinX(self.bounds), originY);
+    CGPathAddLineToPoint(path, NULL, originX, originY);
+    CGPathCloseSubpath(path);
+    
+    CGPathRef immutablePath = CGPathCreateCopy(path);
+    CGPathRelease(path);
+    return immutablePath;
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
@@ -256,11 +259,11 @@ NSString * const kFrameKey = @"keyFrame";
     self.completionBlock = nil;
 }
 
--(UIColor *)color {
-    return [UIColor colorWithCGColor:self.firstBeam.fillColor];
+-(VYColor *)color {
+    return [VYColor colorWithCGColor:self.firstBeam.fillColor];
 }
 
--(void)setColor:(UIColor *)color {
+-(void)setColor:(VYColor *)color {
     self.firstBeam.fillColor = color.CGColor;
     self.secondBeam.fillColor = color.CGColor;
     self.thirdBeam.fillColor = color.CGColor;

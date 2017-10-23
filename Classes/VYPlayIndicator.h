@@ -5,8 +5,15 @@
 //  Copyright (c) 2015 Dennis Oberhoff. All rights reserved.
 //
 
-@import UIKit;
 @import QuartzCore;
+
+#if TARGET_OS_OSX
+@import AppKit;
+#define VYColor NSColor
+#else
+@import UIKit;
+#define VYColor UIColor
+#endif
 
 typedef NS_ENUM(NSUInteger, VYPlayState) {
     VYPlayStateStopped = 0,
@@ -17,7 +24,7 @@ typedef NS_ENUM(NSUInteger, VYPlayState) {
 
 @interface VYPlayIndicator : CALayer
 
-@property (nonatomic, readwrite, strong) UIColor *color;
+@property (nonatomic, readwrite, strong) VYColor *color;
 @property (nonatomic, readwrite, assign) VYPlayState state;
 @property (nonatomic, readwrite, copy) dispatch_block_t completionBlock;
 
