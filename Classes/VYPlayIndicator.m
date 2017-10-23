@@ -238,12 +238,21 @@ NSString * const kFrameKey = @"keyFrame";
 
 -(CGPathRef)pathWithPercentage:(CGFloat)percentageFactor {
     
-    CGFloat originY = CGRectGetHeight(self.bounds) - (CGRectGetHeight(self.bounds) * (percentageFactor / 100.0 ));
+    CGFloat originY;
+    CGFloat minY;
+    #if TARGET_OS_OSX
+    originY = (CGRectGetHeight(self.bounds) * (percentageFactor / 100.0 ));
+    minY = CGRectGetMinY(self.bounds);
+    #else
+    originY = CGRectGetHeight(self.bounds) - (CGRectGetHeight(self.bounds) * (percentageFactor / 100.0 ));
+    minY = CGRectGetMaxY(self.bounds);
+    #endif
+    
     CGFloat originX = CGRectGetMaxX(self.bounds) * 0.25;
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, originX, CGRectGetMaxY(self.bounds));
-    CGPathAddLineToPoint(path, NULL, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds));
+    CGPathMoveToPoint(path, NULL, originX, minY);
+    CGPathAddLineToPoint(path, NULL, CGRectGetMinX(self.bounds), minY);
     CGPathAddLineToPoint(path, NULL, CGRectGetMinX(self.bounds), originY);
     CGPathAddLineToPoint(path, NULL, originX, originY);
     CGPathCloseSubpath(path);
