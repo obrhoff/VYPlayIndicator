@@ -82,32 +82,36 @@ NSString * const kFrameKey = @"keyFrame";
     opacity.removedOnCompletion = NO;
     
     CAKeyframeAnimation *keyframe = [CAKeyframeAnimation animationWithKeyPath:kPathKey];
-    keyframe.duration = 1.75;
-    keyframe.beginTime = CACurrentMediaTime() + 0.35;
+    keyframe.duration = 1.5;
+    keyframe.beginTime = CACurrentMediaTime() + 0.2;
     keyframe.fillMode = kCAFillModeForwards;
     keyframe.removedOnCompletion = NO;
-    keyframe.autoreverses = YES;
+    keyframe.autoreverses = NO;
     keyframe.repeatCount = INFINITY;
     
     CAKeyframeAnimation *secondBeam = keyframe.copy;
     CAKeyframeAnimation *thirdBeam = keyframe.copy;
     
-    NSUInteger count = 10;
+    NSUInteger count = 6;
     
-    keyframe.values = [self randomPaths:count];
-    secondBeam.values = [self randomPaths:count];
-    thirdBeam.values = [self randomPaths:count];
+    NSArray *firstPaths = [self randomPaths:count];
+    NSArray *secondPaths = [self randomPaths:count];
+    NSArray *thirdPaths = [self randomPaths:count];
+
+    keyframe.values = firstPaths;
+    secondBeam.values = secondPaths;
+    thirdBeam.values = thirdPaths;
+
+    keyframe.keyTimes = [self randomKeytimes:firstPaths.count];
+    secondBeam.keyTimes = [self randomKeytimes:secondPaths.count];
+    thirdBeam.keyTimes = [self randomKeytimes:thirdPaths.count];
     
-    keyframe.keyTimes = [self randomKeytimes:count];
-    secondBeam.keyTimes = [self randomKeytimes:count];
-    thirdBeam.keyTimes = [self randomKeytimes:count];
-    
-    keyframe.timingFunctions = [self randomTimingFunctions:count];
-    secondBeam.timingFunctions = [self randomTimingFunctions:count];
-    thirdBeam.timingFunctions = [self randomTimingFunctions:count];
+    keyframe.timingFunctions = [self randomTimingFunctions:firstPaths.count];
+    secondBeam.timingFunctions = [self randomTimingFunctions:secondPaths.count];
+    thirdBeam.timingFunctions = [self randomTimingFunctions:thirdPaths.count];
     
     CABasicAnimation *begin = [CABasicAnimation animationWithKeyPath:kPathKey];
-    begin.duration = 0.35;
+    begin.duration = 0.2;
     begin.fillMode = kCAFillModeRemoved;
     begin.removedOnCompletion = YES;
     
@@ -216,6 +220,7 @@ NSString * const kFrameKey = @"keyFrame";
     while (count--) {
         [frames addObject: (id) [self pathWithPercentage:(CGFloat) rand() / RAND_MAX * 100]];
     }
+    [frames addObject:frames.firstObject];
     return frames.copy;
 }
 
@@ -229,10 +234,12 @@ NSString * const kFrameKey = @"keyFrame";
 }
 
 -(NSArray*)randomKeytimes:(NSUInteger)count {
-    NSMutableArray *timings = [NSMutableArray arrayWithCapacity:count];
-    for (int idx = 0; idx < count; idx++) {
+    NSInteger timingsCount = count - 1;
+    NSMutableArray *timings = [NSMutableArray arrayWithCapacity:timingsCount];
+    for (int idx = 0; idx < timingsCount; idx++) {
         [timings addObject:@((CGFloat) idx / count)];
     }
+    [timings addObject:@1.0];
     return timings.copy;
 }
 
