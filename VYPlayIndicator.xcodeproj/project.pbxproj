@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		798868222387DBDF002B8F67 /* VYPlayIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		798868232387DBDF002B8F67 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */; };
+		798868242387DBE0002B8F67 /* VYPlayIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		798868252387DBE0002B8F67 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */; };
 		E1BD1E471AFCF9770041D138 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E451AFCF9770041D138 /* main.m */; };
 		E1BD1E4E1AFCF97F0041D138 /* VYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E491AFCF97F0041D138 /* VYAppDelegate.m */; };
 		E1BD1E4F1AFCF97F0041D138 /* VYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		798868082387DBC4002B8F67 /* VYPlayIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VYPlayIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7988680B2387DBC4002B8F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7988681A2387DBD8002B8F67 /* VYPlayIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VYPlayIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7988681D2387DBD8002B8F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1A6C7451AFCEEAD0013768C /* VYPlayIndicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VYPlayIndicator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BD1E441AFCF9770041D138 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = SOURCE_ROOT; };
 		E1BD1E451AFCF9770041D138 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Example/main.m; sourceTree = SOURCE_ROOT; };
@@ -31,6 +39,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		798868052387DBC4002B8F67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		798868172387DBD8002B8F67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1A6C7421AFCEEAD0013768C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -41,10 +63,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		798868092387DBC4002B8F67 /* VYPlayIndicator-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7988680B2387DBC4002B8F67 /* Info.plist */,
+			);
+			path = "VYPlayIndicator-iOS";
+			sourceTree = "<group>";
+		};
+		7988681B2387DBD8002B8F67 /* VYPlayIndicator-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				7988681D2387DBD8002B8F67 /* Info.plist */,
+			);
+			path = "VYPlayIndicator-macOS";
+			sourceTree = "<group>";
+		};
 		E1A6C73C1AFCEEAD0013768C = {
 			isa = PBXGroup;
 			children = (
 				E1A6C7471AFCEEAD0013768C /* VYPlayIndicator */,
+				798868092387DBC4002B8F67 /* VYPlayIndicator-iOS */,
+				7988681B2387DBD8002B8F67 /* VYPlayIndicator-macOS */,
 				E1A6C7461AFCEEAD0013768C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				E1A6C7451AFCEEAD0013768C /* VYPlayIndicator.app */,
+				798868082387DBC4002B8F67 /* VYPlayIndicator.framework */,
+				7988681A2387DBD8002B8F67 /* VYPlayIndicator.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,7 +128,62 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		798868032387DBC4002B8F67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798868222387DBDF002B8F67 /* VYPlayIndicator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		798868152387DBD8002B8F67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798868242387DBE0002B8F67 /* VYPlayIndicator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		798868072387DBC4002B8F67 /* VYPlayIndicator-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 798868142387DBC4002B8F67 /* Build configuration list for PBXNativeTarget "VYPlayIndicator-iOS" */;
+			buildPhases = (
+				798868032387DBC4002B8F67 /* Headers */,
+				798868042387DBC4002B8F67 /* Sources */,
+				798868052387DBC4002B8F67 /* Frameworks */,
+				798868062387DBC4002B8F67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VYPlayIndicator-iOS";
+			productName = "VYPlayIndicator-iOS";
+			productReference = 798868082387DBC4002B8F67 /* VYPlayIndicator.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		798868192387DBD8002B8F67 /* VYPlayIndicator-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7988681F2387DBD8002B8F67 /* Build configuration list for PBXNativeTarget "VYPlayIndicator-macOS" */;
+			buildPhases = (
+				798868152387DBD8002B8F67 /* Headers */,
+				798868162387DBD8002B8F67 /* Sources */,
+				798868172387DBD8002B8F67 /* Frameworks */,
+				798868182387DBD8002B8F67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VYPlayIndicator-macOS";
+			productName = "VYPlayIndicator-macOS";
+			productReference = 7988681A2387DBD8002B8F67 /* VYPlayIndicator.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		E1A6C7441AFCEEAD0013768C /* VYPlayIndicator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1A6C7681AFCEEAD0013768C /* Build configuration list for PBXNativeTarget "VYPlayIndicator" */;
@@ -113,6 +210,15 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Dennis Oberhoff";
 				TargetAttributes = {
+					798868072387DBC4002B8F67 = {
+						CreatedOnToolsVersion = 11.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					798868192387DBD8002B8F67 = {
+						CreatedOnToolsVersion = 11.2.1;
+						DevelopmentTeam = YE33ZK7Z99;
+						ProvisioningStyle = Automatic;
+					};
 					E1A6C7441AFCEEAD0013768C = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
@@ -123,6 +229,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -132,11 +239,27 @@
 			projectRoot = "";
 			targets = (
 				E1A6C7441AFCEEAD0013768C /* VYPlayIndicator */,
+				798868072387DBC4002B8F67 /* VYPlayIndicator-iOS */,
+				798868192387DBD8002B8F67 /* VYPlayIndicator-macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		798868062387DBC4002B8F67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		798868182387DBD8002B8F67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1A6C7431AFCEEAD0013768C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -148,6 +271,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		798868042387DBC4002B8F67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798868232387DBDF002B8F67 /* VYPlayIndicator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		798868162387DBD8002B8F67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798868252387DBE0002B8F67 /* VYPlayIndicator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1A6C7411AFCEEAD0013768C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,6 +313,178 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		798868122387DBC4002B8F67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VYPlayIndicator-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.VYPlayIndicator-iOS";
+				PRODUCT_NAME = VYPlayIndicator;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		798868132387DBC4002B8F67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VYPlayIndicator-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.VYPlayIndicator-iOS";
+				PRODUCT_NAME = VYPlayIndicator;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		798868202387DBD8002B8F67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VYPlayIndicator-macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.VYPlayIndicator-macOS";
+				PRODUCT_NAME = VYPlayIndicator;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		798868212387DBD8002B8F67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VYPlayIndicator-macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.VYPlayIndicator-macOS";
+				PRODUCT_NAME = VYPlayIndicator;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E1A6C7661AFCEEAD0013768C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -280,6 +591,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		798868142387DBC4002B8F67 /* Build configuration list for PBXNativeTarget "VYPlayIndicator-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				798868122387DBC4002B8F67 /* Debug */,
+				798868132387DBC4002B8F67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7988681F2387DBD8002B8F67 /* Build configuration list for PBXNativeTarget "VYPlayIndicator-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				798868202387DBD8002B8F67 /* Debug */,
+				798868212387DBD8002B8F67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E1A6C7401AFCEEAD0013768C /* Build configuration list for PBXProject "VYPlayIndicator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
