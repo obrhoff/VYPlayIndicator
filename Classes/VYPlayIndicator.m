@@ -21,6 +21,10 @@ NSString * const kPathKey = @"path";
 NSString * const kOpacityKey = @"opacity";
 NSString * const kFrameKey = @"keyFrame";
 
+CGFloat const kMinimalPercentage = 20.0;
+CGFloat const kPausePercentage = 5.0;
+CGFloat const kMaximalPercantage = 100.0;
+
 -(instancetype)init {
     self = [super init];
     if (self) {
@@ -43,18 +47,19 @@ NSString * const kFrameKey = @"keyFrame";
     self.secondBeam.fillColor = self.color.CGColor;
     self.thirdBeam.fillColor = self.color.CGColor;
     
+    self.thirdBeam.lineCap = kCALineJoinRound;
+    
     self.firstBeam.opaque = YES;
     self.secondBeam.opaque = YES;
     self.thirdBeam.opaque = YES;
-    
+
     self.opacity = 0.0;
-    
+    self.geometryFlipped = YES;
 }
 
 -(void)applyPath {
-    
-    CGRect bounds = CGPathGetPathBoundingBox([self pathWithPercentage:100]);
-    CGPathRef path = [self pathWithPercentage:5];
+    CGRect bounds = CGPathGetPathBoundingBox([self pathWithPercentage:kMaximalPercantage]);
+    CGPathRef path = [self pathWithPercentage:kPausePercentage];
     
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
@@ -139,7 +144,7 @@ NSString * const kFrameKey = @"keyFrame";
 -(void)pausePlayback {
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
-    animation.toValue = (id) [self pathWithPercentage:5];
+    animation.toValue = (id) [self pathWithPercentage:kPausePercentage];
     animation.duration = 0.2;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
@@ -218,7 +223,7 @@ NSString * const kFrameKey = @"keyFrame";
 -(NSArray*)randomPaths:(NSUInteger)count {
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:count];
     while (count--) {
-        [frames addObject: (id) [self pathWithPercentage:(CGFloat) rand() / RAND_MAX * 100]];
+        [frames addObject: (id) [self pathWithPercentage:((CGFloat) rand() / RAND_MAX * 80) + kMinimalPercentage]];
     }
     [frames addObject:frames.firstObject];
     return frames.copy;
@@ -244,29 +249,19 @@ NSString * const kFrameKey = @"keyFrame";
 }
 
 -(CGPathRef)pathWithPercentage:(CGFloat)percentageFactor {
+    CGRect pathRect = CGRectMake(0, 0, self.bounds.size.width * 0.25, self.bounds.size.height * percentageFactor / 100);
+    CGPathRef path;
     
-    CGFloat originY;
-    CGFloat minY;
-    #if TARGET_OS_OSX
-    originY = (CGRectGetHeight(self.bounds) * (percentageFactor / 100.0 ));
-    minY = CGRectGetMinY(self.bounds);
-    #else
-    originY = CGRectGetHeight(self.bounds) - (CGRectGetHeight(self.bounds) * (percentageFactor / 100.0 ));
-    minY = CGRectGetMaxY(self.bounds);
-    #endif
+    switch (self.indicatorStyle) {
+        case legacy:
+            path = CGPathCreateWithRect(pathRect, NULL);
+            break;
+        case modern:
+            path = CGPathCreateWithRoundedRect(pathRect, CGRectGetWidth(pathRect) / 2, CGRectGetWidth(pathRect) / 2, NULL);
+            break;
+    }
     
-    CGFloat originX = CGRectGetMaxX(self.bounds) * 0.25;
-    
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, originX, minY);
-    CGPathAddLineToPoint(path, NULL, CGRectGetMinX(self.bounds), minY);
-    CGPathAddLineToPoint(path, NULL, CGRectGetMinX(self.bounds), originY);
-    CGPathAddLineToPoint(path, NULL, originX, originY);
-    CGPathCloseSubpath(path);
-    
-    CGPathRef immutablePath = CGPathCreateCopy(path);
-    CGPathRelease(path);
-    return immutablePath;
+    return path;
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
