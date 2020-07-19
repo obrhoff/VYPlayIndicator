@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		798868222387DBDF002B8F67 /* VYPlayIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		798868232387DBDF002B8F67 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */; };
-		798868242387DBE0002B8F67 /* VYPlayIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		798868252387DBE0002B8F67 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */; };
+		954F20C424C438ED006E2475 /* VYPlayIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 954F20C224C438ED006E2475 /* VYPlayIndicator.h */; };
+		954F20C524C438ED006E2475 /* VYPlayIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 954F20C224C438ED006E2475 /* VYPlayIndicator.h */; };
+		954F20C624C438ED006E2475 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 954F20C324C438ED006E2475 /* VYPlayIndicator.m */; };
+		954F20C724C438ED006E2475 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 954F20C324C438ED006E2475 /* VYPlayIndicator.m */; };
+		954F20C824C438ED006E2475 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 954F20C324C438ED006E2475 /* VYPlayIndicator.m */; };
 		E1BD1E471AFCF9770041D138 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E451AFCF9770041D138 /* main.m */; };
 		E1BD1E4E1AFCF97F0041D138 /* VYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E491AFCF97F0041D138 /* VYAppDelegate.m */; };
 		E1BD1E4F1AFCF97F0041D138 /* VYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */; };
 		E1BD1E501AFCF97F0041D138 /* VYTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD1E4D1AFCF97F0041D138 /* VYTableViewController.m */; };
-		E1F5649A1AFCFA1E00C44A02 /* VYPlayIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */; };
 		E1F5649D1AFCFA3500C44A02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1F5649B1AFCFA3500C44A02 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +24,8 @@
 		7988680B2387DBC4002B8F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7988681A2387DBD8002B8F67 /* VYPlayIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VYPlayIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7988681D2387DBD8002B8F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		954F20C224C438ED006E2475 /* VYPlayIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYPlayIndicator.h; path = Sources/VYPlayIndicator/VYPlayIndicator.h; sourceTree = SOURCE_ROOT; };
+		954F20C324C438ED006E2475 /* VYPlayIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYPlayIndicator.m; path = Sources/VYPlayIndicator/VYPlayIndicator.m; sourceTree = SOURCE_ROOT; };
 		E1A6C7451AFCEEAD0013768C /* VYPlayIndicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VYPlayIndicator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BD1E441AFCF9770041D138 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = SOURCE_ROOT; };
 		E1BD1E451AFCF9770041D138 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Example/main.m; sourceTree = SOURCE_ROOT; };
@@ -33,8 +35,6 @@
 		E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYTableViewCell.m; path = Example/VYTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		E1BD1E4C1AFCF97F0041D138 /* VYTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYTableViewController.h; path = Example/VYTableViewController.h; sourceTree = SOURCE_ROOT; };
 		E1BD1E4D1AFCF97F0041D138 /* VYTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYTableViewController.m; path = Example/VYTableViewController.m; sourceTree = SOURCE_ROOT; };
-		E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VYPlayIndicator.h; path = Classes/VYPlayIndicator.h; sourceTree = SOURCE_ROOT; };
-		E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VYPlayIndicator.m; path = Classes/VYPlayIndicator.m; sourceTree = SOURCE_ROOT; };
 		E1F5649C1AFCFA3500C44A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Example/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -106,8 +106,8 @@
 				E1A6C7481AFCEEAD0013768C /* Supporting Files */,
 				E1BD1E481AFCF97F0041D138 /* VYAppDelegate.h */,
 				E1BD1E491AFCF97F0041D138 /* VYAppDelegate.m */,
-				E1F564981AFCFA1E00C44A02 /* VYPlayIndicator.h */,
-				E1F564991AFCFA1E00C44A02 /* VYPlayIndicator.m */,
+				954F20C224C438ED006E2475 /* VYPlayIndicator.h */,
+				954F20C324C438ED006E2475 /* VYPlayIndicator.m */,
 				E1BD1E4A1AFCF97F0041D138 /* VYTableViewCell.h */,
 				E1BD1E4B1AFCF97F0041D138 /* VYTableViewCell.m */,
 				E1BD1E4C1AFCF97F0041D138 /* VYTableViewController.h */,
@@ -133,7 +133,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				798868222387DBDF002B8F67 /* VYPlayIndicator.h in Headers */,
+				954F20C424C438ED006E2475 /* VYPlayIndicator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +141,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				798868242387DBE0002B8F67 /* VYPlayIndicator.h in Headers */,
+				954F20C524C438ED006E2475 /* VYPlayIndicator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				798868232387DBDF002B8F67 /* VYPlayIndicator.m in Sources */,
+				954F20C724C438ED006E2475 /* VYPlayIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				798868252387DBE0002B8F67 /* VYPlayIndicator.m in Sources */,
+				954F20C824C438ED006E2475 /* VYPlayIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +294,7 @@
 				E1BD1E501AFCF97F0041D138 /* VYTableViewController.m in Sources */,
 				E1BD1E4E1AFCF97F0041D138 /* VYAppDelegate.m in Sources */,
 				E1BD1E471AFCF9770041D138 /* main.m in Sources */,
-				E1F5649A1AFCFA1E00C44A02 /* VYPlayIndicator.m in Sources */,
+				954F20C624C438ED006E2475 /* VYPlayIndicator.m in Sources */,
 				E1BD1E4F1AFCF97F0041D138 /* VYTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
