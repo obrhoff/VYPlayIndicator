@@ -18,9 +18,11 @@
 @implementation VYTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     self.playIndicator = [VYPlayIndicator new];
     self.playIndicator.frame = self.accessoryView.bounds;
+    self.playIndicator.indicatorStyle = VYPlayStyleModern;
     [self.accessoryView.layer addSublayer:self.playIndicator];
 }
 
@@ -30,6 +32,7 @@
 }
 
 -(void)prepareForReuse {
+    [super prepareForReuse];
     [self.playIndicator reset];
 }
 

@@ -21,16 +21,16 @@ typedef NS_ENUM(NSUInteger, VYPlayState) {
     VYPlayStatePaused = 2
 };
 
-typedef NS_ENUM(NSUInteger, VYStyle) {
-    legacy = 0,
-    modern = 1,
+typedef NS_ENUM(NSUInteger, VYPlayStyle) {
+    VYPlayStyleLegacy = 0,
+    VYPlayStyleModern = 1,
 };
 
 @interface VYPlayIndicator : CALayer
 
 @property (nonatomic, readwrite, strong) VYColor *color;
 @property (nonatomic, readwrite, assign) VYPlayState state;
-@property (nonatomic, readwrite, assign) VYStyle indicatorStyle;
+@property (nonatomic, readwrite, assign) VYPlayStyle indicatorStyle;
 @property (nonatomic, readwrite, copy) dispatch_block_t completionBlock;
 
 -(void)animatePlayback;

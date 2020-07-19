@@ -7,6 +7,12 @@
 
 #import "VYPlayIndicator.h"
 
+typedef NS_ENUM(NSUInteger, VYState) {
+    VYStateMinimized = 0,
+    VYStateMaximized = 1,
+    VYStateRandomized = 2,
+};
+
 @interface VYPlayIndicator() <CAAnimationDelegate>
 
 @property (nonatomic, readwrite, strong) CAShapeLayer *firstBeam;
@@ -58,8 +64,8 @@ CGFloat const kMaximalPercantage = 100.0;
 }
 
 -(void)applyPath {
-    CGRect bounds = CGPathGetPathBoundingBox([self pathWithPercentage:kMaximalPercantage]);
-    CGPathRef path = [self pathWithPercentage:kPausePercentage];
+    CGRect bounds = CGPathGetPathBoundingBox([self pathForState:VYStateMaximized]);
+    CGPathRef path = [self pathForState:VYStateMinimized];
     
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
@@ -144,7 +150,7 @@ CGFloat const kMaximalPercantage = 100.0;
 -(void)pausePlayback {
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
-    animation.toValue = (id) [self pathWithPercentage:kPausePercentage];
+    animation.toValue = (id) [self pathForState:VYStateMinimized];
     animation.duration = 0.2;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
@@ -166,8 +172,8 @@ CGFloat const kMaximalPercantage = 100.0;
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
     opacity.toValue = @(0.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
-    opacity.beginTime = CACurrentMediaTime() + 0.2 * 0.8;
-    opacity.duration = 0.1;
+    opacity.beginTime = CACurrentMediaTime() + 0.1;
+    opacity.duration = 0.2;
     opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
     opacity.delegate = self;
@@ -223,7 +229,7 @@ CGFloat const kMaximalPercantage = 100.0;
 -(NSArray*)randomPaths:(NSUInteger)count {
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:count];
     while (count--) {
-        [frames addObject: (id) [self pathWithPercentage:((CGFloat) rand() / RAND_MAX * 80) + kMinimalPercentage]];
+        [frames addObject: (id) [self pathForState:VYStateRandomized]];
     }
     [frames addObject:frames.firstObject];
     return frames.copy;
@@ -248,20 +254,26 @@ CGFloat const kMaximalPercantage = 100.0;
     return timings.copy;
 }
 
--(CGPathRef)pathWithPercentage:(CGFloat)percentageFactor {
-    CGRect pathRect = CGRectMake(0, 0, self.bounds.size.width * 0.25, self.bounds.size.height * percentageFactor / 100);
-    CGPathRef path;
+-(CGPathRef)pathForState:(VYState)state {
+    CGFloat rectWidth = self.bounds.size.width * 0.25;
+    CGFloat cornerRadius = self.indicatorStyle == VYPlayStyleLegacy ? 0.0 : rectWidth;
+    CGFloat minimalHeight = self.indicatorStyle == VYPlayStyleLegacy ? 2 : cornerRadius;
+    CGFloat rectHeight;
     
-    switch (self.indicatorStyle) {
-        case legacy:
-            path = CGPathCreateWithRect(pathRect, NULL);
+    switch (state) {
+        case VYStateMinimized:
+            rectHeight = minimalHeight;
             break;
-        case modern:
-            path = CGPathCreateWithRoundedRect(pathRect, CGRectGetWidth(pathRect) / 2, CGRectGetWidth(pathRect) / 2, NULL);
+        case VYStateMaximized:
+            rectHeight = CGRectGetHeight(self.bounds);
+            break;
+        case VYStateRandomized:
+            rectHeight = MAX(minimalHeight, ((CGFloat) rand() / RAND_MAX) * CGRectGetHeight(self.bounds));
             break;
     }
-    
-    return path;
+
+    CGRect rect = CGRectMake(0, 0, ceil(rectWidth), ceil(rectHeight));
+    return CGPathCreateWithRoundedRect(rect, cornerRadius, cornerRadius, NULL);
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
