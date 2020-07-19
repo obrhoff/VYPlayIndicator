@@ -16,7 +16,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "VYPlayIndicator"
+            name: "VYPlayIndicator",
+            publicHeadersPath: "",
+            linkerSettings: [
+                .linkedFramework("Foundation"),
+                .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
+                .linkedFramework("AppKit", .when(platforms: [.macOS])),
+            ]
         ),
     ]
 )

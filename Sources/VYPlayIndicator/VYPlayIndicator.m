@@ -27,10 +27,6 @@ NSString * const kPathKey = @"path";
 NSString * const kOpacityKey = @"opacity";
 NSString * const kFrameKey = @"keyFrame";
 
-CGFloat const kMinimalPercentage = 20.0;
-CGFloat const kPausePercentage = 5.0;
-CGFloat const kMaximalPercantage = 100.0;
-
 -(instancetype)init {
     self = [super init];
     if (self) {

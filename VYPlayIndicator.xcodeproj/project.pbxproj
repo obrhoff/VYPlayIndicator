@@ -114,7 +114,6 @@
 				E1BD1E4D1AFCF97F0041D138 /* VYTableViewController.m */,
 			);
 			name = VYPlayIndicator;
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		E1A6C7481AFCEEAD0013768C /* Supporting Files */ = {
