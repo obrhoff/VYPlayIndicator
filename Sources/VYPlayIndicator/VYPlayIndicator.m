@@ -143,11 +143,36 @@ NSString * const kFrameKey = @"keyFrame";
     
 }
 
--(void)pausePlayback {
-    
+-(void)pausePlayback:(BOOL)animated {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
     animation.toValue = (id) [self pathForState:VYStateMinimized];
-    animation.duration = 0.2;
+    animation.duration = animated ? 0.2 : 0.0;
+    animation.fillMode = kCAFillModeForwards;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.removedOnCompletion = NO;
+        
+    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
+    opacity.toValue = @(1.0);
+    opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
+    opacity.duration = animated ? 0.2 : 0.0;
+    opacity.fillMode = kCAFillModeBoth;
+    opacity.removedOnCompletion = NO;
+    
+    for (CAShapeLayer *beam in @[self.firstBeam, self.secondBeam, self.thirdBeam]) {
+        CABasicAnimation *step = animation.copy;
+        step.fromValue = [beam.presentationLayer valueForKeyPath:step.keyPath];
+        [beam removeAnimationForKey:kFrameKey];
+        beam.path = [self pathForState:VYStateMinimized];
+        [beam addAnimation:step forKey:step.keyPath];
+    }
+
+    [self addAnimation:opacity forKey:opacity.keyPath];
+}
+
+-(void)stopPlayback:(BOOL)animated {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
+    animation.toValue =  (id) [self pathForState:VYStateMinimized];
+    animation.duration = animated ? 0.2 : 0.0;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.removedOnCompletion = NO;
@@ -159,22 +184,15 @@ NSString * const kFrameKey = @"keyFrame";
         [beam addAnimation:step forKey:step.keyPath];
     }
     
-}
-
--(void)stopPlayback {
-    
-    [self pausePlayback];
-    
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
     opacity.toValue = @(0.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
-    opacity.beginTime = CACurrentMediaTime() + 0.1;
-    opacity.duration = 0.2;
+    opacity.duration = animated ? 0.2 : 0.0;
     opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
     opacity.delegate = self;
-    [self addAnimation:opacity forKey:opacity.keyPath];
     
+    [self addAnimation:opacity forKey:opacity.keyPath];
 }
 
 -(void)reset {
@@ -186,10 +204,18 @@ NSString * const kFrameKey = @"keyFrame";
     }
 }
 
--(void)setState:(VYPlayState)state {
+- (void)setState:(VYPlayState)state {
+    [self setState:state animated:NO];
+}
+
+-(void)setState:(VYPlayState)state animated:(BOOL)animated {
+    if (self.state == state) {
+        return;
+    }
+        
     switch (state) {
         case VYPlayStateStopped: {
-            [self stopPlayback];
+            [self stopPlayback:animated];
             break;
         }
         case VYPlayStatePlaying: {
@@ -197,14 +223,13 @@ NSString * const kFrameKey = @"keyFrame";
             break;
         }
         case VYPlayStatePaused: {
-            [self pausePlayback];
+            [self pausePlayback:animated];
             break;
         }
     }
 }
 
 -(VYPlayState)state {
-    
     VYPlayState state;
     
     CABasicAnimation *opacity = (CABasicAnimation*) [self animationForKey:kOpacityKey];
