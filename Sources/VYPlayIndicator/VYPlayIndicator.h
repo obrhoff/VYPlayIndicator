@@ -33,7 +33,9 @@ typedef NS_ENUM(NSUInteger, VYPlayStyle) {
 @property (nonatomic, readwrite, assign) VYPlayStyle indicatorStyle;
 @property (nonatomic, readwrite, copy) dispatch_block_t completionBlock;
 
--(void)setState:(VYPlayState)state animated:(BOOL)animated;
+-(void)animatePlayback;
+-(void)stopPlayback;
+-(void)pausePlayback;
 -(void)reset;
 
 @end

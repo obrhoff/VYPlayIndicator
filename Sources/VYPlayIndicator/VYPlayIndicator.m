@@ -143,10 +143,10 @@ NSString * const kFrameKey = @"keyFrame";
     
 }
 
--(void)pausePlayback:(BOOL)animated {
+-(void)pausePlayback {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
     animation.toValue = (id) [self pathForState:VYStateMinimized];
-    animation.duration = animated ? 0.2 : 0.0;
+    animation.duration = 0.2;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.removedOnCompletion = NO;
@@ -154,7 +154,7 @@ NSString * const kFrameKey = @"keyFrame";
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
     opacity.toValue = @(1.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
-    opacity.duration = animated ? 0.2 : 0.0;
+    opacity.duration = 0.2;
     opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
     
@@ -169,10 +169,10 @@ NSString * const kFrameKey = @"keyFrame";
     [self addAnimation:opacity forKey:opacity.keyPath];
 }
 
--(void)stopPlayback:(BOOL)animated {
+-(void)stopPlayback {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:kPathKey];
     animation.toValue =  (id) [self pathForState:VYStateMinimized];
-    animation.duration = animated ? 0.2 : 0.0;
+    animation.duration = 0.2;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     animation.removedOnCompletion = NO;
@@ -187,7 +187,7 @@ NSString * const kFrameKey = @"keyFrame";
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:kOpacityKey];
     opacity.toValue = @(0.0);
     opacity.fromValue = [self.presentationLayer valueForKeyPath:opacity.keyPath];
-    opacity.duration = animated ? 0.2 : 0.0;
+    opacity.duration = 0.2;
     opacity.fillMode = kCAFillModeBoth;
     opacity.removedOnCompletion = NO;
     opacity.delegate = self;
@@ -204,18 +204,10 @@ NSString * const kFrameKey = @"keyFrame";
     }
 }
 
-- (void)setState:(VYPlayState)state {
-    [self setState:state animated:NO];
-}
-
--(void)setState:(VYPlayState)state animated:(BOOL)animated {
-    if (self.state == state) {
-        return;
-    }
-        
+-(void)setState:(VYPlayState)state {
     switch (state) {
         case VYPlayStateStopped: {
-            [self stopPlayback:animated];
+            [self stopPlayback];
             break;
         }
         case VYPlayStatePlaying: {
@@ -223,13 +215,14 @@ NSString * const kFrameKey = @"keyFrame";
             break;
         }
         case VYPlayStatePaused: {
-            [self pausePlayback:animated];
+            [self pausePlayback];
             break;
         }
     }
 }
 
 -(VYPlayState)state {
+    
     VYPlayState state;
     
     CABasicAnimation *opacity = (CABasicAnimation*) [self animationForKey:kOpacityKey];

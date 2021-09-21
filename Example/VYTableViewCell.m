@@ -28,7 +28,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    [self.playIndicator setState:(selected ? VYPlayStatePlaying : VYPlayStateStopped) animated:animated];
+    self.playIndicator.state = selected ? VYPlayStatePlaying : VYPlayStateStopped;
 }
 
 -(void)prepareForReuse {
