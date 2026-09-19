@@ -287,7 +287,7 @@ NSString * const kFrameKey = @"keyFrame";
     }
 
     CGRect rect = CGRectMake(0, 0, ceil(rectWidth), ceil(rectHeight));
-    return CGPathCreateWithRoundedRect(rect, cornerRadius, cornerRadius, NULL);
+    return (CGPathRef)CFAutorelease(CGPathCreateWithRoundedRect(rect, cornerRadius, cornerRadius, NULL));
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
